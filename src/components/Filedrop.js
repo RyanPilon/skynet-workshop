@@ -33,39 +33,6 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-// thumbsContainer is the styling for the thumbnail preview element
-// const thumbsContainer = {
-//   display: 'flex',
-//   flexDirection: 'row',
-//   flexWrap: 'wrap',
-//   marginTop: 16,
-// };
-
-// thumb is the styling for the thumbnail preview
-// const thumb = {
-//   display: 'inline-flex',
-//   borderRadius: 2,
-//   border: '1px solid #eaeaea',
-//   marginBottom: 8,
-//   marginRight: 8,
-//   width: 100,
-//   height: 100,
-//   padding: 4,
-//   boxSizing: 'border-box',
-// };
-
-// const thumbInner = {
-//   display: 'flex',
-//   minWidth: 0,
-//   overflow: 'hidden',
-// };
-
-// const img = {
-//   display: 'block',
-//   width: 'auto',
-//   height: '100%',
-// };
-
 // FileDrop is the drag and drop file selector element
 const FileDrop = (props) => {
   const [files, setFiles] = useState([]);
@@ -99,14 +66,6 @@ const FileDrop = (props) => {
     }),
     [isDragActive, isDragReject, isDragAccept]
   );
-
-  // const thumbs = files.map((file) => (
-  //   <div style={thumb} key={file.name}>
-  //     <div style={thumbInner}>
-  //       <img src={file.preview} style={img} alt="" />
-  //     </div>
-  //   </div>
-  // ));
 
   useEffect(
     () => () => {

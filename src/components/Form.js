@@ -11,7 +11,6 @@ import {
   Divider,
   Label,
 } from 'semantic-ui-react';
-import { PopoverPicker } from './PopoverPicker';
 import Links from './Links';
 import FileDrop from './Filedrop';
 
@@ -96,7 +95,6 @@ const WorkshopForm = (props) => {
             </>
           )}
           {/* Input for file */}
-          {/* <Header as="h4">Task List Upload</Header> */}
           <Form.Group inline>
             <Form.Field>
               <FileDrop
