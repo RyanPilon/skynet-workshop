@@ -70,17 +70,7 @@ const WorkshopForm = (props) => {
               </Form.Field>
               <Form.Group>
                 <Form.Field>
-                  <label>File Path</label>
-                  <Input
-                    label={props.dataDomain + '/'}
-                    placeholder="Enter rest of path."
-                    value={props.dataKey}
-                    onChange={(e) => {
-                      props.setDataKey(e.target.value);
-                    }}
-                  />
-
-                  {props.activeTab === 2 && (
+                    {props.activeTab === 2 && (
                     <Label pointing basic color="green">
                       MySky Files are saved at a path. An app must have
                       permissions to write there.
@@ -88,68 +78,15 @@ const WorkshopForm = (props) => {
                   )}
                 </Form.Field>
               </Form.Group>
-              <Divider />
-              <Form.Group>
-                <Form.Input
-                  label="Color"
-                  placeholder="#000000"
-                  value={props.userColor}
-                  onChange={(e) => {
-                    props.setUserColor(e.target.value);
-                  }}
-                />
-                <Segment basic>
-                  <PopoverPicker
-                    style={{ bottom: 0 }}
-                    color={props.userColor}
-                    onChange={props.setUserColor}
-                  />
-                </Segment>
-              </Form.Group>
-              {props.activeTab > 2 && (
-                <Form.Group inline>
-                  <Button
-                    variant="success"
-                    disabled={props.loggedIn !== true || !props.dataKey}
-                    onClick={(e) => {
-                      props.loadData(e);
-                    }}
-                  >
-                    Load Data from File
-                  </Button>
-                  <Button
-                    style={{ marginLeft: '20px' }}
-                    variant="success"
-                    size="medium"
-                    disabled={
-                      props.loggedIn !== true ||
-                      !props.dataKey ||
-                      !props.userColor
-                    }
-                    onClick={(e) => {
-                      props.handleSaveAndRecord(e);
-                    }}
-                  >
-                    Save Data and Record Update Action
-                  </Button>
-                  {props.activeTab === 3 && (
-                    <Label pointing="left" basic color="green">
-                      MySky + DAC!
-                    </Label>
-                  )}
-                </Form.Group>
-              )}
-              <Divider />
             </>
           )}
           {/* Input for name */}
           {props.activeTab > 0 && (
             <>
-              <Header as="h4">Input for Certificate</Header>
               <Form.Group>
                 <Form.Input
-                  label="Name"
-                  placeholder="Enter your name"
+                  label="Please Put Your Name and a Picture, Then Click Send, to Begin Your Adventure With Skynet"
+                  placeholder="Enter your Name HERE"
                   value={props.name}
                   onChange={(e) => {
                     props.setName(e.target.value);
@@ -159,16 +96,15 @@ const WorkshopForm = (props) => {
             </>
           )}
           {/* Input for file */}
-          <Header as="h4">Image Upload</Header>
+          {/* <Header as="h4">Task List Upload</Header> */}
           <Form.Group inline>
             <Form.Field>
-              <label>Avatar Photo</label>
               <FileDrop
                 setFile={props.setFile}
                 setUploadPreview={setUploadPreview}
               />
             </Form.Field>
-            <Image src={uploadPreview} size="small" />
+            
           </Form.Group>
           {props.activeTab === 0 && (
             <Label pointing basic color="green">

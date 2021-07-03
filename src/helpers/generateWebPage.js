@@ -38,53 +38,77 @@ const certificate = (name, imageSkylinkUrl, userID = '', filePath = '') => {
 	</head>
 
 	<body>
-		<div class="content-container">
-			<div class="logo">
-				<img src="${resources}/images/skynet-logo.svg" alt="Logo Skynet" />
-			</div>
-			
-			<h1>Certificate Of Completion</h1>
-			<div class="ribbon">
-				<img src="${resources}/images/ribbon.png" alt="Ribbon" />
-			</div>
-					
-			<h2>This Certificate is Awarded to</h2>
-					
-			<h3>${name}</h3>
-						
-			<div class="completion">
-				<p>For their completion of the</p>
-			</div>
-			
-			<div class="workshop">
-				<p>'Intro to Skynet workshop'</p>
-			</div>
-						
-			<div class="date">
-				<span>Awarded on ${month}/${day}/${year}</span>
-			</div>
-						
-			<div class="avatar">
-				<img id="certificate-avatar" src="${imageSkylinkUrl}" alt="Avatar">
-			</div>
-							
-			<footer>Sia Skynet 2021, all rights reserved</footer>				
+		<div id="myDIV" class="header">
+			<h2>My To Do List</h2>
+			<input type="text" id="myInput" placeholder="Title...">
+			<span onclick="newElement()" class="addBtn">Add</span>
 		</div>
+		
+		<ul id="myUL">
+			<li>Hit the gym</li>
+			<li class="checked">Pay bills</li>
+			<li>Meet George</li>
+			<li>Buy eggs</li>
+			<li>Read a book</li>
+			<li>Organize office</li>
+		</ul>
+				
 
 		<script>
-
-		function setHoverColor( color ){
-			// find avatar and set a boxShadow with our SkyDB color on mouse hover
-			document.getElementById("certificate-avatar").onmouseover = function() {
-				this.style.boxShadow = "0 0 30px 10px "+color;
-			}
-
-			// find avatar and remove boxShadow on mouse exit
-			document.getElementById("certificate-avatar").onmouseout = function() {
-				this.style.boxShadow = "0 0 0px 0px "+color;
-			}
+		var myNodelist = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < myNodelist.length; i++) {
+		var span = document.createElement("SPAN");
+		var txt = document.createTextNode("\u00D7");
+		span.className = "close";
+		span.appendChild(txt);
+		myNodelist[i].appendChild(span);
 		}
 
+		// Click on a close button to hide the current list item
+		var close = document.getElementsByClassName("close");
+		var i;
+		for (i = 0; i < close.length; i++) {
+		close[i].onclick = function() {
+			var div = this.parentElement;
+			div.style.display = "none";
+		}
+		}
+
+		// Add a "checked" symbol when clicking on a list item
+		var list = document.querySelector('ul');
+		list.addEventListener('click', function(ev) {
+		if (ev.target.tagName === 'LI') {
+			ev.target.classList.toggle('checked');
+		}
+		}, false);
+
+		// Create a new list item when clicking on the "Add" button
+		function newElement() {
+		var li = document.createElement("li");
+		var inputValue = document.getElementById("myInput").value;
+		var t = document.createTextNode(inputValue);
+		li.appendChild(t);
+		if (inputValue === '') {
+			alert("You must write something!");
+		} else {
+			document.getElementById("myUL").appendChild(li);
+		}
+		document.getElementById("myInput").value = "";
+
+		var span = document.createElement("SPAN");
+		var txt = document.createTextNode("\u00D7");
+		span.className = "close";
+		span.appendChild(txt);
+		li.appendChild(span);
+
+		for (i = 0; i < close.length; i++) {
+			close[i].onclick = function() {
+			var div = this.parentElement;
+			div.style.display = "none";
+			}
+		}
+		}
 		// Only run this script if we're past step 3 and have a publicKey
 		if ("${userID}"){
 
@@ -101,8 +125,6 @@ const certificate = (name, imageSkylinkUrl, userID = '', filePath = '') => {
 				setHoverColor(data.color);
 				console.log(data.color);
 			} );
-		} else {
-			setHoverColor("#57B560");
 		}
 
 		</script>
